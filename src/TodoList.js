@@ -14,7 +14,11 @@ class TodoList extends Component {
   render() {
     return (
       <Fragment>
+        {
+          //Fragment 是react提供的占位符
+        }
         <div>
+          {/* 下面是一个input输入框 */}
           <input 
             value={this.state.inputValue}
             onChange={this.handleInputChange.bind(this)}
