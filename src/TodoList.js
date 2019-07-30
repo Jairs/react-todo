@@ -20,8 +20,11 @@ class TodoList extends Component {
           //Fragment 是react提供的占位符
         }
         <div>
+          {/* 利用label来做光标的聚焦 */}
+          <label htmlFor="insertArea">输入内容</label>
           {/* 下面是一个input输入框 */}
           <input 
+            id="insertArea"
             className='input'
             value={this.state.inputValue}
             onChange={this.handleInputChange.bind(this)}
