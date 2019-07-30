@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react'
 // Fragment 是react提供的占位符
 
+import './style.css'
+
 class TodoList extends Component {
 
   constructor(props){
@@ -20,6 +22,7 @@ class TodoList extends Component {
         <div>
           {/* 下面是一个input输入框 */}
           <input 
+            className='input'
             value={this.state.inputValue}
             onChange={this.handleInputChange.bind(this)}
           />
@@ -33,8 +36,9 @@ class TodoList extends Component {
               return <li 
                         key={index}
                         onClick={this.handleItemDelete.bind(this,index)}
+                        // 不转义，直接用html输出
+                        dangerouslySetInnerHTML={{__html: item}}
                       >
-                        {item}
                       </li>
             })
           }
