@@ -32,4 +32,8 @@ TodoItem.propTypes = {
   index: PropTypes.number
 }
 
+TodoItem.defaultProps = {
+  content: 'hello world'
+}
+
 export default TodoItem
