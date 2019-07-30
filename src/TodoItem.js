@@ -27,7 +27,7 @@ class TodoItem extends Component {
 }
 
 TodoItem.propTypes = {
-  content: PropTypes.string,
+  content: PropTypes.string.isRequired,
   deleteItem: PropTypes.func,
   index: PropTypes.number
 }
