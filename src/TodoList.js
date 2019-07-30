@@ -38,17 +38,15 @@ class TodoList extends Component {
             this.state.list.map((item, index) => {
               return (
                       <Fragment>
-                        <TodoItem content={item}/> {/* 父组件用属性向子组件传递数据 */}
+                        <TodoItem 
+                          content={item} 
+                          index={index}
+                          deleteItem={this.handleItemDelete.bind(this)}
+                        /> 
                         {
-                          /*
-                            <li 
-                              key={index}
-                              onClick={this.handleItemDelete.bind(this,index)}
-                              // 不转义，直接用html输出
-                              dangerouslySetInnerHTML={{__html: item}}
-                            >
-                            </li>
-                          **/
+                          /* 父组件用属性向子组件传递数据
+                             父组件将自己的方法用属性传递给子组件,使得子组件可以调用父组件的方法修改父组件的state
+                           */
                         }
                       </Fragment>
               )
