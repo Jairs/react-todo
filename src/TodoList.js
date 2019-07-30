@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 // Fragment 是react提供的占位符
-
+import TodoItem from './TodoItem'
 import './style.css'
 
 class TodoList extends Component {
@@ -36,13 +36,22 @@ class TodoList extends Component {
         <ul>
           {
             this.state.list.map((item, index) => {
-              return <li 
-                        key={index}
-                        onClick={this.handleItemDelete.bind(this,index)}
-                        // 不转义，直接用html输出
-                        dangerouslySetInnerHTML={{__html: item}}
-                      >
-                      </li>
+              return (
+                      <Fragment>
+                        <TodoItem content={item}/> {/* 父组件用属性向子组件传递数据 */}
+                        {
+                          /*
+                            <li 
+                              key={index}
+                              onClick={this.handleItemDelete.bind(this,index)}
+                              // 不转义，直接用html输出
+                              dangerouslySetInnerHTML={{__html: item}}
+                            >
+                            </li>
+                          **/
+                        }
+                      </Fragment>
+              )
             })
           }
         </ul>
