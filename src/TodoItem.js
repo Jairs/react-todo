@@ -8,18 +8,20 @@ class TodoItem extends Component {
   }
 
   render() {
+    const { content } = this.props
     return (
       <li
           onClick={this.handleClick}
       >
         {/*子组件用this.props接收父组件传递的数据*/}
-        {this.props.content}
+        {content}
       </li>
     )
   }
 
   handleClick() {
-    this.props.deleteItem(this.props.index)
+    const { deleteItem, index } = this.props
+    deleteItem(index)
   }
 }
 

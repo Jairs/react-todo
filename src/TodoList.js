@@ -11,6 +11,9 @@ class TodoList extends Component {
       inputValue: '',
       list: []
     }
+    this.handleInputChange = this.handleInputChange.bind(this)
+    this.handleBtnClick = this.handleBtnClick.bind(this)
+    this.handleItemDelete = this.handleItemDelete.bind(this)
   }
 
   render() {
@@ -27,57 +30,56 @@ class TodoList extends Component {
             id="insertArea"
             className='input'
             value={this.state.inputValue}
-            onChange={this.handleInputChange.bind(this)}
+            onChange={this.handleInputChange}
           />
           <button
-            onClick={this.handleBtnClick.bind(this)}
+            onClick={this.handleBtnClick}
           >提交</button>
         </div>
         <ul>
-          {
-            this.state.list.map((item, index) => {
-              return (
-                      <Fragment>
-                        <TodoItem 
-                          content={item} 
-                          index={index}
-                          deleteItem={this.handleItemDelete.bind(this)}
-                        /> 
-                        {
-                          /* 父组件用属性向子组件传递数据
-                             父组件将自己的方法用属性传递给子组件,使得子组件可以调用父组件的方法修改父组件的state
-                           */
-                        }
-                      </Fragment>
-              )
-            })
-          }
+          {this.getTodoItem()}
         </ul>
       </Fragment>
     )
   }
 
-  handleInputChange(e) {
-    this.setState({
-      inputValue: e.target.value
+  getTodoItem() {
+    return this.state.list.map((item, index) => {
+      return (
+        <TodoItem
+          key={index}
+          content={item} 
+          index={index}
+          deleteItem={this.handleItemDelete}
+        />
+      )
     })
   }
 
+  handleInputChange(e) {
+    const value = e.target.value
+    this.setState(()=>({
+      inputValue: value
+    }))
+  }
+
   handleBtnClick() {
-    this.setState({
-      list: [...this.state.list, this.state.inputValue],
+    this.setState((prevState)=>({
+      list:[...prevState.list, prevState.inputValue],
       inputValue: ''
-    })
+    }))
   }
 
   handleItemDelete(index) {
     // immutable
     // state 不允许我们做任何的改变
-    const list = [...this.state.list]
-    list.splice(index, 1)
-
-    this.setState({
-      list
+    
+    this.setState((prevState)=>{
+      const list = [...prevState.list]
+      list.splice(index, 1)
+      return {
+        list
+      }
     })
   }
 }
