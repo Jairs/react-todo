@@ -20,7 +20,7 @@ class TodoList extends Component {
   componentDidMount(){
     axios.get('/api/todolist').then((res)=>{
       this.setState(()=>({
-        list: res.data
+        list: [...res.data]
       }))
     }).catch(()=>{
       console.error('error')
@@ -43,6 +43,7 @@ class TodoList extends Component {
             value={this.state.inputValue}
             onChange={this.handleInputChange}
           />
+          <input type="file"/>
           <button
             onClick={this.handleBtnClick}
           >提交</button>
