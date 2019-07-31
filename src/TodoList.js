@@ -2,7 +2,9 @@ import React, { Component, Fragment } from 'react'
 // Fragment 是react提供的占位符
 import TodoItem from './TodoItem'
 import axios from 'axios'
-import './style.css'
+
+import { Input, Button, List } from 'antd'
+import 'antd/dist/antd.css'
 
 class TodoList extends Component {
 
@@ -33,21 +35,28 @@ class TodoList extends Component {
         {
           //Fragment 是react提供的占位符
         }
-        <div>
-          {/* 利用label来做光标的聚焦 */}
-          <label htmlFor="insertArea">输入内容</label>
+        <div style={{marginTop:'10px',marginLeft:'10px'}}>
           {/* 下面是一个input输入框 */}
-          <input 
+          <Input 
             id="insertArea"
             className='input'
             value={this.state.inputValue}
             onChange={this.handleInputChange}
+            placeholder="todo info"
+            style={{width:'300px',marginRight:'10px'}}
           />
-          <input type="file"/>
-          <button
+          <Button
+            type="primary"
             onClick={this.handleBtnClick}
-          >提交</button>
+          >提交</Button>
+          {/* <List
+            style={{marginTop:'10px',width:'300px'}}
+            bordered
+            dataSource={this.state.list}
+            renderItem={item => <List.Item>{item}</List.Item>}
+          /> */}
         </div>
+
         <ul>
           {this.getTodoItem()}
         </ul>
