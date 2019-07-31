@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 // Fragment 是react提供的占位符
 import TodoItem from './TodoItem'
+import axios from 'axios'
 import './style.css'
 
 class TodoList extends Component {
@@ -14,6 +15,16 @@ class TodoList extends Component {
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleBtnClick = this.handleBtnClick.bind(this)
     this.handleItemDelete = this.handleItemDelete.bind(this)
+  }
+
+  componentDidMount(){
+    axios.get('/api/todolist').then((res)=>{
+      this.setState(()=>({
+        list: res.data
+      }))
+    }).catch(()=>{
+      console.error('error')
+    })
   }
 
   render() {

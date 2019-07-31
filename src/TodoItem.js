@@ -8,6 +8,15 @@ class TodoItem extends Component {
     this.handleClick = this.handleClick.bind(this)
   }
 
+  // 避免父组件的render执行的时候子组件没变化也重新render（提升性能）
+  shouldComponentUpdate(nextProps,nextState){
+    if(nextProps.content!==this.props.content){
+      return true
+    }else{
+      return false
+    }
+  }
+
   render() {
     const { content } = this.props
     return (
