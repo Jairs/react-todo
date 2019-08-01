@@ -36,7 +36,7 @@ class TodoList extends Component {
             style={{marginTop:'10px',width:'300px'}}
             bordered
             dataSource={this.state.list}
-            renderItem={(item,index) => <List.Item onClick={(index)=>this.handleItemDelete(index)}>{item}</List.Item>}
+            renderItem={(item,index) => <List.Item onClick={this.handleItemDelete.bind(this,index)}>{item}</List.Item>}
           />
         </div>
       </Fragment>
