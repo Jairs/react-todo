@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react'
-import axios from 'axios'
 
 import { Input, Button, List } from 'antd'
 import 'antd/dist/antd.css'
@@ -13,7 +12,6 @@ class TodoList extends Component {
     this.state = store.getState()
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleBtnClick = this.handleBtnClick.bind(this)
-    this.handleItemDelete = this.handleItemDelete.bind(this)
     this.handleStoreChange = this.handleStoreChange.bind(this)
     store.subscribe(this.handleStoreChange) // store发生变化就会自动执行这个函数
   } 
@@ -38,7 +36,7 @@ class TodoList extends Component {
             style={{marginTop:'10px',width:'300px'}}
             bordered
             dataSource={this.state.list}
-            renderItem={(item,index) => <List.Item onClick={this.handleItemDelete(index)}>{item}</List.Item>}
+            renderItem={(item,index) => <List.Item onClick={(index)=>this.handleItemDelete(index)}>{item}</List.Item>}
           />
         </div>
       </Fragment>
@@ -64,7 +62,7 @@ class TodoList extends Component {
     store.dispatch(action)
   }
 
-  handleItemDelete(index) {
+  handleItemDelete(index=0) {
     const action = {
       type: 'delete_todo_item',
       index
