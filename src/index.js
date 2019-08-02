@@ -1,5 +1,14 @@
-import React from 'react'; // 编译jsx语法
-import ReactDOM from 'react-dom'; // 将组件挂载到dom节点上
-import TodoList from './TodoList'; // 引入组件
-// JSX语法中，如果我们要使用自己创建的组件，组件开头必须以大写字母开头
-ReactDOM.render( < TodoList / > , document.getElementById('root'));
+import React from 'react';
+import ReactDOM from 'react-dom';
+import TodoList from './TodoList';
+import { Provider } from 'react-redux'
+import store from './store'
+
+const App = (
+  // Provider组件把store提供给每个内部的组件
+  <Provider store={store}>
+    <TodoList />
+  </Provider>
+)
+  
+ReactDOM.render( App , document.getElementById('root'));
